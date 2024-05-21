@@ -4,16 +4,58 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete model_;
+	delete modelBlock_;
+	delete player_;
+
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
+		delete worldTransformBlock;
+	}
+	worldTransformBlocks_.clear();
+}
 
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	textureHandle_=TextureManager::Load("mario.png");
+	//3Dモデルの生成
+	model_ = Model::Create();
+	modelBlock_= Model::Create();
+	//ワールドトランスフォームの初期化
+	wordTransform_.Initialize();
+	//ビュープロジェクションの初期化
+	viewProjection_.Initialize();
+	//自キャラの生成
+	player_=new Player();
+	//自キャラの初期化
+	player_->Initialize(model_,textureHandle_,&viewProjection_);
+
+	//要素数
+	const uint32_t kNumBlockHorizontal=20;
+	//ブロック1個分の横幅
+	const float kBlockWidth=2.0f;
+	//要素数を変更する	
+
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	//自キャラの更新
+	player_->Update();
+
+	//ブロック更新
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
+
+		//アフィン変換行列の作成
+
+		worldTransformBlock->matWorld_=
+
+		worldTransformBlock->TransferMatrix();
+	}
+}
 
 void GameScene::Draw() {
 
@@ -41,6 +83,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	//自キャラの描画
+	player_->Draw();
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

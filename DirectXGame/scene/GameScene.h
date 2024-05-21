@@ -8,6 +8,9 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include"Player.h"
+
+#include<vector>
 
 /// <summary>
 /// ゲームシーン
@@ -47,5 +50,21 @@ private: // メンバ変数
 
 	/// <summary>
 	/// ゲームシーン用
-	/// </summary>
+	/// <summary>
+	/// テクスチャーハンドル
+	uint32_t textureHandle_=0;
+
+	//3Dモデル
+	Model* model_=nullptr;
+	Model* modelBlock_=nullptr;
+	//ワールドトランスフォーム
+	WorldTransform wordTransform_;
+	//ビュープロジェクション
+	ViewProjection viewProjection_;
+
+	//自キャラ
+	Player* player_=nullptr;
+
+	//縦横ブロックの配列
+	std::vector<WorldTransform*> worldTransformBlocks_;
 };

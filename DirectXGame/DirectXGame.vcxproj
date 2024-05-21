@@ -106,6 +106,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\デスクトップ\GitHub\AL3_kamataEngin\DirectXGame\Player.cpp" />
     <ClCompile Include="2d\ImGuiManager.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="scene\GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\デスクトップ\GitHub\AL3_kamataEngin\DirectXGame\Player.h" />
     <ClInclude Include="2d\ImGuiManager.h" />
     <ClInclude Include="2d\Sprite.h" />
     <ClInclude Include="3d\AxisIndicator.h" />
