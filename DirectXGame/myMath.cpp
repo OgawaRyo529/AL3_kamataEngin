@@ -8,16 +8,16 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Ve
                MakeRotateZMatrix(rotate.z));
 
     result.m[0][0] *= scale.x;
-    result.m[0][1] *= rotate.x;
-    result.m[0][2] *= translate.x;
+    result.m[0][1] *= scale.x;
+    result.m[0][2] *= scale.x;
 
     result.m[1][0] *= scale.y;
-    result.m[1][1] *= rotate.y;
-    result.m[1][2] *= translate.y;
+    result.m[1][1] *= scale.y;
+    result.m[1][2] *= scale.y;
 
     result.m[2][0] *= scale.z;
-    result.m[2][1] *= rotate.z;
-    result.m[2][2] *= translate.z;
+    result.m[2][1] *= scale.z;
+    result.m[2][2] *= scale.z;
 
     result.m[3][0] = translate.x;
     result.m[3][1] = translate.y;
@@ -41,14 +41,11 @@ Matrix4x4 MakeRotateYMatrix(float radian) {
 }
 
 Matrix4x4 MakeRotateZMatrix(float radian) {
-    float cosTheta = std::cos(radian);
-    float sinTheta = std::sin(radian);
-    return{
-    cosTheta,sinTheta,0.0f,0.0f,
-    -sinTheta, cosTheta,0.0f,0.0f,
-    0.0f,0.0f,1.0f,0.0f,
-    0.0f,0.0f,0.0f,1.0f};
-    //X軸とY軸の回転行列を作る関数を参考に考えてみよう
+	float cosTheta = std::cos(radian);
+	float sinTheta = std::sin(radian);
+	return {cosTheta, sinTheta, 0.0f, 0.0f, -sinTheta, cosTheta, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+
+	        0.0f,           0.0f,           0.0f, 1.0f};
 }
 
 

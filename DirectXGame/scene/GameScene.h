@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Audio.h"
+#include "DebugCamera.h"
 #include "DirectXCommon.h"
 #include "Input.h"
 #include "Model.h"
@@ -66,5 +67,10 @@ private: // メンバ変数
 	Player* player_=nullptr;
 
 	//縦横ブロックの配列
-	std::vector<WorldTransform*> worldTransformBlocks_;
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+
+	// デバッグカメラ有効
+	bool isDebugCameraActive_ = false;
+	// デバッグカメラ
+	DebugCamera* debugCamera_ = nullptr;
 };
