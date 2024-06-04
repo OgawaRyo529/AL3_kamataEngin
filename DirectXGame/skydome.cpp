@@ -1,0 +1,24 @@
+﻿#include"skydome.h"
+#include"cassert"
+
+void skydome::Initialize(Model* model, ViewProjection* viewProjection) {
+//NULLポインタチェック
+	assert(model);
+	worldTransform_.Initialize();
+
+	//引数の内容をメンバ変数に記録
+	model_=model;
+	//textureHandle_=textureHandle;
+	viewProjection_= viewProjection;
+}
+
+void skydome::Update(){
+
+	worldTransform_.TransferMatrix();
+
+}
+void skydome::Draw(){
+
+	model_->Draw(worldTransform_,*viewProjection_);
+
+}
