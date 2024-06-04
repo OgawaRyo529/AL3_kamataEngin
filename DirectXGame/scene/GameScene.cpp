@@ -45,7 +45,6 @@ void GameScene::Initialize() {
 	player_=new Player();
 	//自キャラの初期化
 	player_->Initialize(model_,textureHandle_,&viewProjection_);
-	//Skydome_->Initialize(model_,&viewProjection_);
 	//要素数
 	const uint32_t kNumBlockVirtical = 10;
 	const uint32_t kNumBlockHorizontal=20;
