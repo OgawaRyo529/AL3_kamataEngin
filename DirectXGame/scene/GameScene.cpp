@@ -23,6 +23,7 @@ GameScene::~GameScene() {
 	worldTransformBlocks_.clear();
 
 	delete debugCamera_;
+	delete mapChipField_;
 }
 
 void GameScene::Initialize() {
@@ -37,6 +38,7 @@ void GameScene::Initialize() {
 	//3Dモデルの生成
 	modelSkydome_=Model::CreateFromOBJ("sphere",true);
 	modelBlock_= Model::Create();
+	//mapChipField_->LoadMap
 	//ワールドトランスフォームの初期化
 	wordTransform_.Initialize();
 	//ビュープロジェクションの初期化
@@ -45,6 +47,8 @@ void GameScene::Initialize() {
 	player_=new Player();
 	//自キャラの初期化
 	player_->Initialize(model_,textureHandle_,&viewProjection_);
+	//マップチップ初期化
+	mapChipField_=new MapChipField;
 	//要素数
 	const uint32_t kNumBlockVirtical = 10;
 	const uint32_t kNumBlockHorizontal=20;

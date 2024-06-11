@@ -3,6 +3,8 @@
 #include<stdint.h>
 #include"Vector3.h"
 
+
+//MapChipFieldの上に書く
 enum class MapChipType{
 	kBlank,
 	kBlock,
@@ -23,11 +25,13 @@ public:
 	static inline  const uint32_t kNumBlockHorizontal=100;
 
 private:
+
 	MapChipData mapChipData_;
-void ResetMapChipData();
+	void ResetMapChipData();
 
-void LoadMapChipeCsv(const std::string& filePath);
+	void LoadMapChipeCsv(const std::string& filePath);
 
+	MapChipType GetMapChipTypeByIndex(uint32_t xIndex,uint32_t yindex);
 };
 
 

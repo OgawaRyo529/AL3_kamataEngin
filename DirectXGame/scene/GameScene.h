@@ -11,7 +11,7 @@
 #include "WorldTransform.h"
 #include"Player.h"
 #include"skydome.h"
-
+#include"MapChipField.h"
 
 #include<vector>
 
@@ -77,4 +77,7 @@ private: // メンバ変数
 
 	skydome* Skydome_;
 	Model* modelSkydome_;
+
+	//マップチップフィールド
+	MapChipField* mapChipField_;
 };
