@@ -3,6 +3,8 @@
 #include <cassert>
 #include"myMath.h"
 #include "WorldTransform.h"
+#include"MapChipField.h"
+#include <map>
 
 
 GameScene::GameScene() {}
@@ -43,12 +45,35 @@ void GameScene::Initialize() {
 	wordTransform_.Initialize();
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
+	//Vector3 playerPosition=mapChipField_->GetMapChipPositionByIndex(,)
 	//自キャラの生成
 	player_=new Player();
 	//自キャラの初期化
-	player_->Initialize(model_,textureHandle_,&viewProjection_);
+	player_->Initialize(model_,&viewProjection_,position);
 	//マップチップ初期化
 	mapChipField_=new MapChipField;
+
+	
+	// デバッグカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
+
+	Skydome_=new skydome();
+	Skydome_->Initialize(modelSkydome_,&viewProjection_);
+
+
+	////要素数(切り取り後)
+	mapChipField_=new MapChipField;
+	//mapChipField_->LoadMapChipeCsv(Resources/map.csv);
+
+	GenerateBlocks();
+
+
+
+
+
+}
+void GameScene::GenerateBlocks() {
+
 	//要素数
 	const uint32_t kNumBlockVirtical = 10;
 	const uint32_t kNumBlockHorizontal=20;
@@ -75,12 +100,10 @@ void GameScene::Initialize() {
 			}
 		}
 	}
-	// デバッグカメラの生成
-	debugCamera_ = new DebugCamera(1280, 720);
 
-	Skydome_=new skydome();
-	Skydome_->Initialize(modelSkydome_,&viewProjection_);
+
 }
+
 
 void GameScene::Update() {
 

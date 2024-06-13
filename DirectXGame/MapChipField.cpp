@@ -1,18 +1,19 @@
 ﻿#include <map>
 #include<sstream>
 #include <cassert>
-#include "MapChipField.h"
 #include <string>
 #include<fstream>
+#include<cassert>
+#include "MapChipField.h"
 
 namespace {
 
+
+}
 	std::map<std::string,MapChipType>mapChipTable={
 		{"0",MapChipType::kBlank},
 		{"1",MapChipType::kBlock},
 	};
-
-}
 
 void MapChipField::ResetMapChipData()
 {
@@ -57,3 +58,17 @@ void MapChipField:: LoadMapChipeCsv(const std::string& filePath) {
 
 }
 
+auto GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex) {
+	if (xIndex < 0 || MapChipField::kNumBlockHorizontal - 1 < xIndex) {
+		return MapChipType::kBlank;
+	}
+	if (yIndex < 0 || MapChipField::kNumBlockVirtical - 1 < yIndex) {
+		return MapChipType::kBlock;
+	}
+	//return MapChipField::mapChipData_.data[yIndex][xIndex];
+}
+
+ Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) {
+
+	return Vector3(MapChipField::kBlockWidth*xIndex,MapChipField::kBlockHeight*(MapChipField::kNumBlockVirtical-1-yIndex),0);
+ }
